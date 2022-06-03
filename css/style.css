@@ -1,0 +1,53 @@
+* {
+  padding: 0;
+  margin: 0;
+  color: #000000;
+  font-family: 'Roboto', Arial, Helvetica, sans-serif;
+  font-style: normal;
+}
+
+html::-webkit-scrollbar {
+  display: none;
+}
+
+html {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+  background: #FFFFFF;
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  min-width: 320px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: antialiased;
+  font-smoothing: antialiased;
+  overflow: hidden;
+  overflow-x: hidden !important;
+  overflow-y: scroll;
+}
+
+.body {
+  width: 100%;
+  overflow: hidden;
+  min-height: 100vh;
+  position: relative;
+  z-index: 1;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+}
+
+#road {
+  background: #4B4A6A;
+  width: 200px;
+  height: 100%;
+}
+/*# sourceMappingURL=style.css.map */
