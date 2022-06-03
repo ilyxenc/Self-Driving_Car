@@ -6,7 +6,7 @@ class Controls {
         this.right = false
 
         switch (type) {
-            case "MY":
+            case "KEYS":
                 this.#addKeyboarListeners()
                 break
             case "BOT":
