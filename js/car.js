@@ -1,5 +1,5 @@
 class Car {
-    constructor(x, y, width, height, controlType, maxSpeed = 3) {
+    constructor(x, y, width, height, controlType, maxSpeed = 3, color = "red") {
         this.x = x
         this.y = y
         this.width = width
@@ -14,13 +14,19 @@ class Car {
 
         this.useBrain = controlType == "AI"
 
+        this.img = new Image()
+
         if (controlType != "BOT") {
             this.sensor = new Sensor(this)
             this.brain = new NeuralNetwork(
                 [this.sensor.rayCount, 6, 4]
             )
+            this.img.src = "./images/main-car.png"
+        } else {
+            this.img.src = "./images/bot-car.png"
         }
         this.controls = new Controls(controlType)
+
     }
 
     update(roadBorders, traffic) {
@@ -131,19 +137,31 @@ class Car {
     }
 
     draw(ctx, color, drawSensor = false) {
-        if (this.damaged) {
-            ctx.fillStyle = "gray"
-        } else {
-            ctx.fillStyle = color
-        }
+        // if (this.damaged) {
+        //     ctx.fillStyle = "gray"
+        // } else {
+        //     ctx.fillStyle = color
+        // }
 
-        ctx.beginPath()
+        // ctx.beginPath()
 
-        ctx.moveTo(this.polygon[0].x, this.polygon[0].y)
-        for (let i = 0; i < this.polygon.length; i++) {
-            ctx.lineTo(this.polygon[i].x, this.polygon[i].y)
-        }
-        ctx.fill()
+        // ctx.moveTo(this.polygon[0].x, this.polygon[0].y)
+        // for (let i = 0; i < this.polygon.length; i++) {
+        //     ctx.lineTo(this.polygon[i].x, this.polygon[i].y)
+        // }
+        // ctx.fill()
+
+        ctx.save()
+        ctx.translate(this.x, this.y)
+        ctx.rotate(-this.angle)
+        ctx.drawImage(
+            this.img,
+            -this.width / 2,
+            -this.height / 2,
+            this.width,
+            this.height
+        )
+        ctx.restore()
 
         if (this.sensor && drawSensor) {
             this.sensor.draw(ctx)
