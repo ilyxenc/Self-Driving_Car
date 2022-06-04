@@ -11,7 +11,7 @@ html::-webkit-scrollbar
 html
     -ms-overflow-style: none
     scrollbar-width: none
-    background: #FFFFFF
+    background: #151523
 
 body
     position: relative
@@ -40,6 +40,30 @@ body
     height: 100%
 
 #network
-    background: black //#3C3B54
+    background: #202036
     width: 300px
     height: 100%
+
+#verticalButtons 
+    display: flex
+    flex-direction: column
+    padding: 10px
+    gap: 20px
+
+    button
+        padding: 5px
+        font-size: 24px
+        background: #4B4A6A
+        width: 45px
+        height: 45px
+        display: flex
+        justify-content: center
+        align-items: center
+        border-radius: 5px
+        border: none
+        outline: none
+        cursor: pointer
+
+        &:hover
+            background: #202036
+            transition: 0.3s

@@ -9,33 +9,32 @@ const networkCtx = networkCanvas.getContext("2d")
 
 const road = new Road(roadCanvas.width / 2, roadCanvas.width * 0.9, 3)
 
-const N = 100
+const N = 1000
 const cars = generateCars(N)
-cars[0] = new Car(road.getLaneCenter(1), 100, 30, 50, "KEYS")
 let bestCar = cars[0]
 if (localStorage.getItem("bestBrain")) {
-    bestCar.brain = JSON.parse(
-        localStorage.getItem("bestBrain")
-    )
+    for (let i = 0; i < cars.length; i++) {
+        cars[i].brain = JSON.parse(
+            localStorage.getItem("bestBrain")
+        )
+
+        if (i != 0) {
+            NeuralNetwork.mutate(cars[i].brain, 0.1)
+        }
+    }
 }
 
 const traffic = [
-    new Car(road.getLaneCenter(1), -100, 30, 50, "BOT", 2)
+    new Car(road.getLaneCenter(1), -100, 30, 50, "BOT", 2),
+    new Car(road.getLaneCenter(0), -300, 30, 50, "BOT", 2),
+    new Car(road.getLaneCenter(2), -300, 30, 50, "BOT", 2),
+    new Car(road.getLaneCenter(0), -500, 30, 50, "BOT", 2),
+    new Car(road.getLaneCenter(1), -500, 30, 50, "BOT", 2),
+    new Car(road.getLaneCenter(1), -700, 30, 50, "BOT", 2),
+    new Car(road.getLaneCenter(2), -700, 30, 50, "BOT", 2),
 ]
 
-
 animate()
-
-function save() {
-    localStorage.setItem(
-        "bestBrain",
-        JSON.stringify(bestCar.brain)
-    )
-}
-
-function discard() {
-    localStorage.removeItem("bestBrain")
-}
 
 function generateCars(N) {
     const cars = []
@@ -54,7 +53,7 @@ function animate(time) {
         cars[i].update(road.borders, traffic)
     }
 
-    const bestCar = cars.find(
+    bestCar = cars.find(
         c => c.y == Math.min(
             ...cars.map(
                 c => c.y

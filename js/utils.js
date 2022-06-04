@@ -50,3 +50,21 @@ let getRGBA = (value) => {
 
     return `rgba(${R}, ${G}, ${B}, ${alpha}`
 }
+
+let setBestBrainEver = () => {
+    localStorage.setItem(
+        "bestBrain",
+        BESTBRAINEVER
+    )
+}
+
+let save = () => {
+    localStorage.setItem(
+        "bestBrain",
+        JSON.stringify(bestCar.brain)
+    )
+}
+
+let discard = () => {
+    localStorage.removeItem("bestBrain")
+}
