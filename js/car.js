@@ -19,7 +19,7 @@ class Car {
         if (controlType != "BOT") {
             this.sensor = new Sensor(this)
             this.brain = new NeuralNetwork(
-                [this.sensor.rayCount, 6, 4]
+                [this.sensor.rayCount, 7, 6, 4]
             )
             this.img.src = "./images/main-car.png"
         } else {
@@ -137,20 +137,6 @@ class Car {
     }
 
     draw(ctx, color, drawSensor = false) {
-        // if (this.damaged) {
-        //     ctx.fillStyle = "gray"
-        // } else {
-        //     ctx.fillStyle = color
-        // }
-
-        // ctx.beginPath()
-
-        // ctx.moveTo(this.polygon[0].x, this.polygon[0].y)
-        // for (let i = 0; i < this.polygon.length; i++) {
-        //     ctx.lineTo(this.polygon[i].x, this.polygon[i].y)
-        // }
-        // ctx.fill()
-
         ctx.save()
         ctx.translate(this.x, this.y)
         ctx.rotate(-this.angle)
